@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Put, Body, NotFoundError } from 'routing-controllers'
+import { Controller, Get, Param, Put, Body, NotFoundError, Post, HttpCode } from 'routing-controllers'
 import Product from './entity'
 
 @Controller()
@@ -28,7 +28,14 @@ export default class MainController {
         if (!product) throw new NotFoundError('Cannot find product')
 
         return Product.merge(product, update).save()
+    }
 
+    @Post('/products')
+    @HttpCode(201)
+    createProduct(
+        @Body() product: Product
+    ) {
+        return product.save()
     }
 
 }

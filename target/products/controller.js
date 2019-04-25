@@ -28,6 +28,9 @@ let MainController = class MainController {
             throw new routing_controllers_1.NotFoundError('Cannot find product');
         return entity_1.default.merge(product, update).save();
     }
+    createProduct(product) {
+        return product.save();
+    }
 };
 __decorate([
     routing_controllers_1.Get('/products'),
@@ -50,6 +53,14 @@ __decorate([
     __metadata("design:paramtypes", [Number, Object]),
     __metadata("design:returntype", Promise)
 ], MainController.prototype, "updateProduct", null);
+__decorate([
+    routing_controllers_1.Post('/products'),
+    routing_controllers_1.HttpCode(201),
+    __param(0, routing_controllers_1.Body()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [entity_1.default]),
+    __metadata("design:returntype", void 0)
+], MainController.prototype, "createProduct", null);
 MainController = __decorate([
     routing_controllers_1.Controller()
 ], MainController);
