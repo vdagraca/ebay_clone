@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from 'routing-controllers'
+import { Controller, Get, Param, Put, Body, NotFoundError } from 'routing-controllers'
 import Product from './entity'
 
 @Controller()
@@ -11,11 +11,24 @@ export default class MainController {
     }
 
     @Get('/products/:id')
-    getPage(
+    getProducts(
         // this decorator retrieves the ID parameter from the url
         @Param('id') id: number
     ) {
 
         return Product.findOne(id)
     }
+
+    @Put('/products/:id')
+    async updateProduct(
+        @Param('id') id: number,
+        @Body() update: Partial<Product>
+    ) {
+        const product = await Product.findOne(id)
+        if (!product) throw new NotFoundError('Cannot find product')
+
+        return Product.merge(product, update).save()
+
+    }
+
 }

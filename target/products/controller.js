@@ -19,8 +19,14 @@ let MainController = class MainController {
         const products = await entity_1.default.find();
         return { products };
     }
-    getPage(id) {
+    getProducts(id) {
         return entity_1.default.findOne(id);
+    }
+    async updateProduct(id, update) {
+        const product = await entity_1.default.findOne(id);
+        if (!product)
+            throw new routing_controllers_1.NotFoundError('Cannot find product');
+        return entity_1.default.merge(product, update).save();
     }
 };
 __decorate([
@@ -35,7 +41,15 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
-], MainController.prototype, "getPage", null);
+], MainController.prototype, "getProducts", null);
+__decorate([
+    routing_controllers_1.Put('/products/:id'),
+    __param(0, routing_controllers_1.Param('id')),
+    __param(1, routing_controllers_1.Body()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, Object]),
+    __metadata("design:returntype", Promise)
+], MainController.prototype, "updateProduct", null);
 MainController = __decorate([
     routing_controllers_1.Controller()
 ], MainController);
