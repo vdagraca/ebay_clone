@@ -8,6 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const routing_controllers_1 = require("routing-controllers");
 const entity_1 = require("./entity");
@@ -16,6 +19,9 @@ let MainController = class MainController {
         const products = await entity_1.default.find();
         return { products };
     }
+    getPage(id) {
+        return entity_1.default.findOne(id);
+    }
 };
 __decorate([
     routing_controllers_1.Get('/products'),
@@ -23,6 +29,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], MainController.prototype, "allProducts", null);
+__decorate([
+    routing_controllers_1.Get('/products/:id'),
+    __param(0, routing_controllers_1.Param('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", void 0)
+], MainController.prototype, "getPage", null);
 MainController = __decorate([
     routing_controllers_1.Controller()
 ], MainController);
