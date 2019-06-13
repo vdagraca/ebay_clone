@@ -1,11 +1,11 @@
-### ebay_clone backend
+# Ebay_clone backend
 
 ## Features:
  * Nodemon - server auto-restarts when code changes
  * Koa 
  * TypeORM 
 
-# Getting Started
+### Getting Started
 - Clone the repository
 ```
 git clone https://github.com/vdagraca/ebay_clone.git
