@@ -8,7 +8,7 @@
 # Getting Started
 - Clone the repository
 ```
-git clone --depth=1 https://github.com/javieraviles/node-typescript-koa-rest.git <project_name>
+git clone https://github.com/vdagraca/ebay_clone.git
 ```
 - Install dependencies
 ```
